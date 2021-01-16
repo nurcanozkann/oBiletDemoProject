@@ -1,0 +1,61 @@
+﻿@using ObiletcomProject.Models
+@model  JourneyIndexDetail
+@using ObiletcomProject.Helper
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/journeypage.css" rel="stylesheet" />
+
+<div class="card ">
+    <div class="card-header journeyheader">
+        <div class="container">
+            <a href="@Url.Action("Index", "Home")" class="arrowicon">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                </svg>
+            </a>
+            <label class="centertext">
+                <b>
+                    @Model.OriginLocation - @Model.DestinationLocation<br />
+                    @Model.Departure.ToShortDateString()
+                </b>
+            </label>
+        </div>
+    </div>
+    <div class="card-body">
+        @foreach (var item in Model.originandDestinationDetails)
+        {
+            <a class="journeydetail" href="@Url.Action("JourneyDetail","Journey", new {originId= SeoContent.AdresDuzenle(Model.OriginLocationId),destinationId= SeoContent.AdresDuzenle(Model.DestinationLocationId),departuredate= SeoContent.AdresDuzenle(@Model.Departure.ToShortDateString()), journeyid= SeoContent.AdresDuzenle(item.JourneyId) })">
+                <div class="container containersize">
+                    <div class="childrendiv">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-1 color">
+                                <i>Kalkış</i><br />
+                                <b>@item.Departure</b>
+                            </div>
+                            <div class="col-xs-6 col-md-1 color">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                </svg>
+                            </div>
+                            <div class="col-xs-6 col-md-1 color">
+                                <i>Varış</i><br />
+                                <b> @item.Arrical</b>
+                            </div>
+                            <div class="col-xs-6 col-md-9 color">
+                                <button type="button" class="buttonprop">@item.Price @item.Currency</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 color">
+                                <p style="float:left">@item.Origin - @item.Destination</p>
+                                @Html.Hidden("SessionInfo", item.JourneyId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </a>
+        }
+    </div>
+</div>
