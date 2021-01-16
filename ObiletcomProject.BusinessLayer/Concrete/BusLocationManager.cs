@@ -12,11 +12,11 @@ namespace ObiletcomProject.BusinessLayer.Concrete
         {
             try
             {
-                var client = new RestClient("https://v2-api.obilet.com/api/location/getbuslocations");
+                var client = new RestClient("blablabla");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
-                request.AddHeader("Authorization", "Basic ZEdocGMybHpZV0p5WVc1a2JtVjNZbWx1");
+                request.AddHeader("Authorization", "Basic blablabla");
                 var jsonDetail = new DeviceSessionInfo
                 {
                     data = null,
