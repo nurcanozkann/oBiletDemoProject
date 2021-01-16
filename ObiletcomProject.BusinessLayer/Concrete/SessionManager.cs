@@ -12,7 +12,7 @@ namespace ObiletcomProject.BusinessLayer.Concrete
         {
             try
             {
-                var client = new RestClient("https://v2-api.obilet.com/api/client/getsession");
+                var client = new RestClient("blablabla");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
